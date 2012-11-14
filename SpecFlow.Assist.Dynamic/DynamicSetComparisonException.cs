@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TechTalk.SpecFlow.Assist
+namespace SpecFlow.Assist.Dynamic
 {
     public class DynamicSetComparisonException : Exception
     {

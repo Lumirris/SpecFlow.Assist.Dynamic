@@ -108,7 +108,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 18
  testRunner.Then("the BirthDate property should equal 1972-10-09");
 #line 19
-  testRunner.And("the LengthInMeters property should equal \'1.96\'");
+  testRunner.And("the LengthInMeters property should equal 1.96");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -132,7 +132,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
  testRunner.Then("the BirthDate property should equal 1972-10-09");
 #line 26
-  testRunner.And("the LengthInMeters property should equal \'1.96\'");
+  testRunner.And("the LengthInMeters property should equal 1.96");
 #line hidden
             this.ScenarioCleanup();
         }

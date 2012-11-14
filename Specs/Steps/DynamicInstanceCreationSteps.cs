@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using Should.Fluent;
+using SpecFlow.Assist.Dynamic;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace Specs.Steps
 {
@@ -41,7 +40,7 @@ namespace Specs.Steps
             ((DateTime)State.OriginalInstance.BirthDate).Should().Equal(DateTime.Parse(expectedDate));
         }
 
-        [Then(@"the LengthInMeters property should equal '(\d+\.\d+)'")]
+        [Then(@"the LengthInMeters property should equal (\d+\.\d+)")]
         public void LengthInMeterShouldBe(double expectedDouble)
         {
             ((double)State.OriginalInstance.LengthInMeters).Should().Equal(expectedDouble);

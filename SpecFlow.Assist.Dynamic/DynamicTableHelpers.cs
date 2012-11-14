@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using ImpromptuInterface;
+using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
-namespace TechTalk.SpecFlow.Assist
+namespace SpecFlow.Assist.Dynamic
 {
     public static class DynamicTableHelpers
     {
@@ -43,6 +45,27 @@ namespace TechTalk.SpecFlow.Assist
         }
 
         /// <summary>
+        /// Create a dynamic object from the headers and values of the <paramref name="table"/>
+        /// </summary>
+        /// <param name="table">the table to create a dynamic object from</param>
+        /// <returns>the created object</returns>
+        public static ExpandoObject CreateDynamicInstance<T>(this Table table) where T : IConvertible 
+        {
+            if (table.Header.Count == 2 && table.RowCount > 1)
+            {
+                var horizontalTable = CreateHorizontalTable(table);
+                return CreateDynamicInstance<T>(horizontalTable.Rows[0]);
+            }
+
+            if (table.RowCount == 1)
+            {
+                return CreateDynamicInstance<T>(table.Rows[0]);
+            }
+
+            throw new DynamicInstanceFromTableException(ERRORMESS_INSTANCETABLE_FORMAT);
+        }
+
+        /// <summary>
         /// Creates a set of dynamic objects based of the <paramref name="table"/> headers and values
         /// </summary>
         /// <param name="table">the table to create a set of dynamics from</param>
@@ -50,6 +73,18 @@ namespace TechTalk.SpecFlow.Assist
         public static IEnumerable<dynamic> CreateDynamicSet(this Table table)
         {
             return table.Rows.Select(CreateDynamicInstance);
+        }
+
+        /// <summary>
+        /// Creates a set of dynamic objects based of the <paramref name="table"/> headers and values
+        /// </summary>
+        //// <typeparam name="T">the value type to use for property creation</typeparam>
+        /// <param name="table">the table to create a set of dynamics from</param>
+        /// <returns>a set of dynamics</returns>
+        /// 
+        public static IEnumerable<dynamic> CreateDynamicSet<T>(this Table table) where T : IConvertible
+        {
+            return table.Rows.Select(CreateDynamicInstance<T>);
         }
 
         /// <summary>
@@ -222,6 +257,33 @@ namespace TechTalk.SpecFlow.Assist
             }
 
             return expando;
+        }
+
+        private static ExpandoObject CreateDynamicInstance<T>(TableRow tablerow) where T : IConvertible
+        {
+            dynamic expando = new ExpandoObject();
+            var dicExpando = expando as IDictionary<string, object>;
+
+            foreach (var header in tablerow.Keys)
+            {
+                var propName = CreatePropertyName(header);
+                var propValue = CreateTypedValue<T>(tablerow[header]);
+                dicExpando.Add(propName, propValue);
+            }
+            
+            return expando;
+        }
+
+        private static object CreateTypedValue<T>(string valueFromTable) where T : IConvertible
+        {
+            try
+            {
+                return Convert.ChangeType(valueFromTable, typeof(T));
+            }
+            catch (Exception)
+            {
+                return valueFromTable;
+            }
         }
 
         private static object CreateTypedValue(string valueFromTable)

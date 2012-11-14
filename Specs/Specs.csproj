@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.2.0.0.1\lib\net40\FluentAssertions.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -89,7 +92,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DynamicSetFromTable.feature</DependentUpon>
     </Compile>
+    <Compile Include="GenericDynamicSetFromTable.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenericDynamicSetFromTable.feature</DependentUpon>
+    </Compile>
+    <Compile Include="GenericValueConversions.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenericValueConversions.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\GenericDynamicInstanceCreationSteps.cs" />
     <Compile Include="Steps\StepArgumentTransformationSteps.cs" />
     <Compile Include="Steps\DynamicSetComparisonSteps.cs" />
     <Compile Include="Steps\DynamicInstanceComparisionSteps.cs" />
@@ -127,6 +141,14 @@
     <None Include="DynamicSetFromTable.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DynamicSetFromTable.feature.cs</LastGenOutput>
+    </None>
+    <None Include="GenericDynamicSetFromTable.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GenericDynamicSetFromTable.feature.cs</LastGenOutput>
+    </None>
+    <None Include="GenericValueConversions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GenericValueConversions.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="ValueConversions.feature">

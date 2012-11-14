@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TechTalk.SpecFlow.Assist
+namespace SpecFlow.Assist.Dynamic
 {
     public class DynamicInstanceFromTableException : Exception
     {

@@ -20,7 +20,7 @@ Scenario: Doubles should be translated from strings
 	When I create a dynamic instance from this table
 		| Length in meters |
 		| 1.96             | 
-	Then the LengthInMeters property should equal '1.96'
+	Then the LengthInMeters property should equal 1.96
 
 Scenario: Dates should be translated from strings
 	When I create a dynamic instance from this table
@@ -38,4 +38,4 @@ Scenario: A strange double should not be translated into a date
 	When I create a dynamic instance from this table
 		| Length in meters |
 		| 4.567            |  
-	Then the LengthInMeters property should equal '4.567'
+	Then the LengthInMeters property should equal 4.567

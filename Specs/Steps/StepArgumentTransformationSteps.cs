@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using SpecFlow.Assist.Dynamic;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace Specs.Steps
 {

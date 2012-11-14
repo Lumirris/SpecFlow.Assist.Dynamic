@@ -121,7 +121,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 20
  testRunner.When("I create a dynamic instance from this table", ((string)(null)), table3);
 #line 23
- testRunner.Then("the LengthInMeters property should equal \'1.96\'");
+ testRunner.Then("the LengthInMeters property should equal 1.96");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -181,7 +181,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 38
  testRunner.When("I create a dynamic instance from this table", ((string)(null)), table6);
 #line 41
- testRunner.Then("the LengthInMeters property should equal \'4.567\'");
+ testRunner.Then("the LengthInMeters property should equal 4.567");
 #line hidden
             this.ScenarioCleanup();
         }
